@@ -4,6 +4,10 @@ workflows:
     software:
       xcode: 9.4.1
       flutter: stable
+    cache:
+      enabled: true
+      cache_paths: 
+        - '$FCI_BUILD_DIR/build'
     steps:
       - name: Installing dependencies
         type: installing
