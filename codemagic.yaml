@@ -1,0 +1,29 @@
+workflows:
+  - name: Default Workflow
+    environment: []
+    software:
+      xcode: 9.4.1
+      flutter: stable
+    steps:
+      - name: Installing dependencies
+        type: installing
+      # - name: Testing
+      #   type: testing
+      #   analyze:
+      #     enabled: true
+      #     arguments: analyze
+      #   test:
+      #     enabled: true
+      #     target: test
+      #   drive:
+      #     enabled: false
+      #     device_type: None
+      #     command: drive --target=test_driver/button_pressing.dart
+      #   stop_if_failed: true
+      - name: Build Web
+        type: buildingWeb
+        arguments: flutter packages pub global run webdev build
+      - name: Publishing
+        type: publishing
+        always_run: true
+    target: debug
