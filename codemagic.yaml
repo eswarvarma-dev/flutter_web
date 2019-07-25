@@ -1,9 +1,7 @@
 workflows:
   - name: Default Workflow
     environment: 
-      vars:
-        - key: 
-          value: 
+      vars: []
       xcode: 9.4.1
       flutter: stable
     cache:
