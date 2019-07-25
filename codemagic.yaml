@@ -11,7 +11,6 @@ workflows:
       cache_paths: 
         - '$FCI_BUILD_DIR/build'
     scripts:
-      - echo 'flutter.sdk=/Users/builder/programs/flutter' > $FCI_BUILD_DIR/android/local.properties
       - flutter analyze
       - Flutter packages pub global activate webdev
       - flutter packages pub global run webdev build
