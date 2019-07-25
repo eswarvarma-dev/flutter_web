@@ -9,7 +9,10 @@ workflows:
       cache_paths: 
         - '$FCI_BUILD_DIR/build'
     scripts:
-      - cd $FCI_BUILD_DIR/examples/hello_world/
+      - |
+        cd $FCI_BUILD_DIR/examples/hello_world/
+        pwd
+        ls -la
       - flutter packages pub get
       - flutter packages pub global activate webdev
       - flutter packages pub global run webdev build
