@@ -11,6 +11,8 @@ workflows:
       cache_paths: 
         - '$FCI_BUILD_DIR/build'
     scripts:
+      - cd examples/hello_world/
+      - flutter packages pub get
       - flutter packages pub global activate webdev
       - flutter packages pub global run webdev build
     build_on_pr_update: True
