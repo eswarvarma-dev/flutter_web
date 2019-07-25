@@ -2,8 +2,8 @@ workflows:
   - name: Default Workflow
     environment: 
       vars:
-        - key: MY_VAR
-          value: foobar
+        - key: 
+          value: 
       xcode: 9.4.1
       flutter: stable
     cache:
@@ -11,12 +11,12 @@ workflows:
       cache_paths: 
         - '$FCI_BUILD_DIR/build'
     scripts:
-      - cd examples/hello_world/
+      - cd $FCI_BUILD_DIR/clone/examples/hello_world/
       - flutter packages pub get
       - flutter packages pub global activate webdev
       - flutter packages pub global run webdev build
     build_on_pr_update: True
-    automatic_builds: True
+    automatic_builds: True 
     branch_patterns:
       - pattern: '*'
         include: true
