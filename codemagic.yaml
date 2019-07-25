@@ -11,8 +11,7 @@ workflows:
       cache_paths: 
         - '$FCI_BUILD_DIR/build'
     scripts:
-      - flutter analyze
-      - Flutter packages pub global activate webdev
+      - flutter packages pub global activate webdev
       - flutter packages pub global run webdev build
     build_on_pr_update: True
     automatic_builds: True
