@@ -11,11 +11,9 @@ workflows:
     scripts:
       - |
         cd $FCI_BUILD_DIR/examples/hello_world/
-        pwd
-        ls -la
-      - flutter packages pub get
-      - flutter packages pub global activate webdev
-      - flutter packages pub global run webdev build
+        flutter packages pub get
+        flutter packages pub global activate webdev
+        flutter packages pub global run webdev build
     build_on_pr_update: True
     automatic_builds: True 
     branch_patterns:
