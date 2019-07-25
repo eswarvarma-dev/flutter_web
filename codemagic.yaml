@@ -1,7 +1,9 @@
 workflows:
   - name: Default Workflow
     environment: 
-      vars: []
+      vars:
+        - key: MY_VAR
+          value: foobar
       xcode: 9.4.1
       flutter: stable
     cache:
@@ -9,6 +11,8 @@ workflows:
       cache_paths: 
         - '$FCI_BUILD_DIR/build'
     scripts:
+      - echo 'flutter.sdk=/Users/builder/programs/flutter' > $FCI_BUILD_DIR/android/local.properties
+      - flutter packages pub get
       - Flutter packages pub global activate webdev
       - flutter analyze
       - flutter packages pub global run webdev build
