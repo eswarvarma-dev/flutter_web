@@ -1,21 +1,42 @@
 workflows:
-  - name: Default Workflow
-    environment: 
-      vars: []
-      xcode: 9.4.1
+  workflowid:
+    name: Default Workflow
+    environment:
+      vars: {}
       flutter: stable
     cache:
-      enabled: true
-      cache_paths: 
-        - '$FCI_BUILD_DIR/build'
+      enabled: false
+      cache_paths: []
     scripts:
-      - |
-        cd $FCI_BUILD_DIR/examples/hello_world/
-        flutter packages pub get
-        flutter packages pub global activate webdev
-        flutter packages pub global run webdev build
-    build_on_pr_update: True
-    automatic_builds: True 
+    - '# echo $CM_KEYSTORE | base64 --decode > /tmp/keystore.keystore'
+    - '# echo "storePassword=$CM_KEYSTORE_PASSWORD" > $FCI_BUILD_DIR/android/key.properties'
+    - '# echo "keyPassword=$CM_KEY_ALIAS_PASSWORD" >> $FCI_BUILD_DIR/android/key.properties'
+    - '# echo "keyAlias=$CM_KEY_ALIAS_USERNAME" >> $FCI_BUILD_DIR/android/key.properties'
+    - '# echo "storeFile=/tmp/keystore.keystore" >> $FCI_BUILD_DIR/android/key.properties'
+    - '# echo "flutter.sdk=/Users/builder/programs/flutter" > $FCI_BUILD_DIR/android/local.properties'
+    - flutter packages pub get
+    - flutter packages pub global activate webdev
+    - '# flutter build apk --debug'
+    - flutter packages pub global run webdev build
+    automatic_builds: false
+    build_on_pr_update: false
     branch_patterns:
-      - pattern: '*'
-        include: true
+    - pattern: '*'
+      include: true
+      source: true
+    publishing:
+      email:
+        recipients:
+        - bondarenko.stanislav.96@gmail.com
+        publish_when_fail: false
+      slack:
+        channel: '#dev-slack-publishing'
+        notify_on_build_start: false
+        publish_when_fail: false
+      google_play:
+        credentials: ''
+        publish_when_fail: false
+        track: internal
+      static_page:
+        subdomain: some_web
+        publish_when_fail: false
