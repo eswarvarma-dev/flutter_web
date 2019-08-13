@@ -8,7 +8,7 @@ workflows:
       enabled: false
       cache_paths: []
     scripts:
-    - $FCI_BUILD_DIR=$FCI_BUILD_DIR/examples/spinning_square
+    - FCI_BUILD_DIR=$FCI_BUILD_DIR/examples/spinning_square
     - '# echo $CM_KEYSTORE | base64 --decode > /tmp/keystore.keystore'
     - '# echo "storePassword=$CM_KEYSTORE_PASSWORD" > $FCI_BUILD_DIR/examples/spinning_square/android/key.properties'
     - '# echo "keyPassword=$CM_KEY_ALIAS_PASSWORD" >> $FCI_BUILD_DIR/examples/spinning_square/android/key.properties'
