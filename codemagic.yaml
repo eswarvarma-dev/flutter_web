@@ -8,18 +8,20 @@ workflows:
       enabled: false
       cache_paths: []
     scripts:
+    - $FCI_BUILD_DIR=$FCI_BUILD_DIR/examples/spinning_square
     - '# echo $CM_KEYSTORE | base64 --decode > /tmp/keystore.keystore'
-    - '# echo "storePassword=$CM_KEYSTORE_PASSWORD" > $FCI_BUILD_DIR/android/key.properties'
-    - '# echo "keyPassword=$CM_KEY_ALIAS_PASSWORD" >> $FCI_BUILD_DIR/android/key.properties'
-    - '# echo "keyAlias=$CM_KEY_ALIAS_USERNAME" >> $FCI_BUILD_DIR/android/key.properties'
-    - '# echo "storeFile=/tmp/keystore.keystore" >> $FCI_BUILD_DIR/android/key.properties'
-    - '# echo "flutter.sdk=/Users/builder/programs/flutter" > $FCI_BUILD_DIR/android/local.properties'
+    - '# echo "storePassword=$CM_KEYSTORE_PASSWORD" > $FCI_BUILD_DIR/examples/spinning_square/android/key.properties'
+    - '# echo "keyPassword=$CM_KEY_ALIAS_PASSWORD" >> $FCI_BUILD_DIR/examples/spinning_square/android/key.properties'
+    - '# echo "keyAlias=$CM_KEY_ALIAS_USERNAME" >> $FCI_BUILD_DIR/examples/spinning_square/android/key.properties'
+    - '# echo "storeFile=/tmp/keystore.keystore" >> $FCI_BUILD_DIR/examples/spinning_square/android/key.properties'
+    - '# echo "flutter.sdk=/Users/builder/programs/flutter" > $FCI_BUILD_DIR/examples/spinning_square/android/local.properties'
     - flutter packages pub get
     - flutter packages pub global activate webdev
     - '# flutter build apk --debug'
     - flutter packages pub global run webdev build
     automatic_builds: false
     build_on_pr_update: false
+    project_path: examples/spinning_square
     branch_patterns:
     - pattern: '*'
       include: true
@@ -30,7 +32,7 @@ workflows:
         - bondarenko.stanislav.96@gmail.com
         publish_when_fail: false
       slack:
-        channel: '#dev-slack-publishing'
+        channel: ''
         notify_on_build_start: false
         publish_when_fail: false
       google_play:
