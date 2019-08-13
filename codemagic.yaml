@@ -21,7 +21,7 @@ workflows:
     - flutter packages pub global run webdev build
     automatic_builds: false
     build_on_pr_update: false
-    project_path: examples/spinning_square
+    project_file: examples/spinning_square
     branch_patterns:
     - pattern: '*'
       include: true
