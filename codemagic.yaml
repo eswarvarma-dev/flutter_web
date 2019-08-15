@@ -9,18 +9,19 @@ workflows:
       cache_paths: []
     scripts:
     - '# echo $CM_KEYSTORE | base64 --decode > /tmp/keystore.keystore'
-    - '# echo "storePassword=$CM_KEYSTORE_PASSWORD" > $FCI_BUILD_DIR/examples/spinning_square/android/key.properties'
-    - '# echo "keyPassword=$CM_KEY_ALIAS_PASSWORD" >> $FCI_BUILD_DIR/examples/spinning_square/android/key.properties'
-    - '# echo "keyAlias=$CM_KEY_ALIAS_USERNAME" >> $FCI_BUILD_DIR/examples/spinning_square/android/key.properties'
-    - '# echo "storeFile=/tmp/keystore.keystore" >> $FCI_BUILD_DIR/examples/spinning_square/android/key.properties'
-    - '# echo "flutter.sdk=/Users/builder/programs/flutter" > $FCI_BUILD_DIR/examples/spinning_square/android/local.properties'
-    - cd examples/spinning_square && flutter packages pub get
-    - cd examples/spinning_square && flutter packages pub global activate webdev
-    - '# cd examples/spinning_square && flutter build apk --debug'
-    - cd examples/spinning_square && flutter packages pub global run webdev build
+    - '# echo "storePassword=$CM_KEYSTORE_PASSWORD" > $FCI_BUILD_DIR/examples/custom_fonts/android/key.properties'
+    - '# echo "keyPassword=$CM_KEY_ALIAS_PASSWORD" >> $FCI_BUILD_DIR/examples/custom_fonts/android/key.properties'
+    - '# echo "keyAlias=$CM_KEY_ALIAS_USERNAME" >> $FCI_BUILD_DIR/examples/custom_fonts/android/key.properties'
+    - '# echo "storeFile=/tmp/keystore.keystore" >> $FCI_BUILD_DIR/examples/custom_fonts/android/key.properties'
+    - '# echo "flutter.sdk=/Users/builder/programs/flutter" > $FCI_BUILD_DIR/examples/custom_fonts/android/local.properties'
+    - cd examples/custom_fonts && flutter packages pub get
+    - cd examples/custom_fonts && flutter packages pub global activate webdev
+    - cd examples/custom_fonts && flutter analyze'
+    - '# cd examples/custom_fonts && flutter build apk --debug'
+    - cd examples/custom_fonts && flutter packages pub global run webdev build
     automatic_builds: false
     build_on_pr_update: false
-    project_file: examples/spinning_square
+    project_file: examples/custom_fonts
     branch_patterns:
     - pattern: '*'
       include: true
@@ -39,5 +40,6 @@ workflows:
         publish_when_fail: false
         track: internal
       static_page:
-        subdomain: some_web
+        subdomain: some_web2
         publish_when_fail: false
+
